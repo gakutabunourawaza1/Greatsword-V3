@@ -1,7 +1,15 @@
-FROM node:14
+FROM node:18
+
 WORKDIR /usr/src/app
-COPY package*.json ./
+
+COPY package.json package-lock.json ./
+
 RUN npm install
+
 COPY . .
+
+# ENV NODE_ENV=production
+
 EXPOSE 3000
-CMD ["node", "app.js"]
+
+CMD ["npm", "start"]
