@@ -1,15 +1,12 @@
-FROM node:18
+FROM node:bookworm-slim
+ENV NODE_ENV=production
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY ["package.json", "./"]
 
-RUN npm install --omit=dev
+RUN npm install
 
 COPY . .
 
-ENV NODE_ENV=production
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+CMD [ "node", "index.js" ]
